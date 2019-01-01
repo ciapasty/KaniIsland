@@ -21,10 +21,12 @@ public class MovementRunAway : MonoBehaviour {
 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, perceptionRadius, dangerLayerMask);
         foreach (var coll in hitColliders) {
-            float d = Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
-            Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
-            diff /= (d * d * d);
-            runAway += diff;
+            float d = coll.Distance(this.gameObject.GetComponent<BoxCollider2D>()).distance; //Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
+            if (d > 0) {
+                Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
+                diff /= (d * d * d);
+                runAway += diff;
+            }
         }
 
         body.AddForce(Vector2.ClampMagnitude(runAway * maxForce, maxForce));

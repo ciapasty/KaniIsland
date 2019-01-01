@@ -25,6 +25,10 @@ public class CharacterController : MonoBehaviour {
         render = GetComponent<SpriteRenderer>();
         flock = GetComponent<MovementFlock>();
         runAway = GetComponent<MovementRunAway>();
+
+        maxVelocity = Random.Range(1.5f, 3);
+        GetComponent<MovementFlock>().perceptionRadius = Random.Range(1.5f, 2.5f);
+        GetComponent<MovementRunAway>().maxForce = Random.Range(10, 45);
     }
     
     void Update() {
@@ -49,16 +53,25 @@ public class CharacterController : MonoBehaviour {
     }
 
     public void Drown() {
+        KillCharacter();
+        anim.SetTrigger("Drown");
+    }
+
+    public void Destroy() {
         Destroy(this.gameObject);
     }
 
     public void Hit() {
+        KillCharacter();
+        anim.SetTrigger("Kill");
+    }
+
+    public void KillCharacter() {
         isDead = true;
         flock.enabled = false;
         runAway.enabled = false;
         boxCollider.isTrigger = true;
         gameObject.layer = 9;
-        anim.SetTrigger("isDead");
     }
 
     public bool IsDead() {

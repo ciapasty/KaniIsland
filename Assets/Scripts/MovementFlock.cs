@@ -66,7 +66,13 @@ public class MovementFlock : MonoBehaviour {
         acceleration += separation * 1.25f;
         acceleration = Vector2.ClampMagnitude(acceleration, maxForce);
 
-        body.AddForce(acceleration);
+        if (HasValue(acceleration.x) && HasValue(acceleration.y)) {
+            body.AddForce(acceleration);
+        }
+    }
+
+    public static bool HasValue(float value) {
+        return !float.IsNaN(value) && !float.IsInfinity(value);
     }
 
     // Gizmos
