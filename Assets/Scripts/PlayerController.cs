@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
     public float attackRange;
     public LayerMask characterLayerMask;
 
+    private GameObject characterToPickup;
+    private GameObject characterCarried;
+
     Animator anim;
     Rigidbody2D body;
     SpriteRenderer render;
@@ -51,20 +54,66 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        // Attack
-        if (timeBtwAttack <= 0) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                timeBtwAttack = startTimeBtwAttack;
-                Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
-                for (int i = 0; i < enemiesToHit.Length; i++) {
-                    enemiesToHit[i].GetComponent<CharacterController>().Hit();
+        if (characterCarried == null) {
+            // Body pickup
+            if (Input.GetKeyDown(KeyCode.C)) {
+
+            }   
+
+            // Attack/Body pickup
+            if (timeBtwAttack <= 0) {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    timeBtwAttack = startTimeBtwAttack;
+                    if (characterToPickup != null) {
+                        characterCarried = characterToPickup;
+                        characterToPickup = null;
+                        return;
+                    }
+
+                    Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
+                    if (enemiesToHit.Length > 0) {
+                        enemiesToHit[0].GetComponent<CharacterController>().Hit();
+                    }
                 }
+            } else {
+                timeBtwAttack -= Time.deltaTime;
             }
         } else {
-            timeBtwAttack -= Time.deltaTime;
+            // Move Character with Player
+            characterCarried.transform.position = new Vector3(transform.position.x, transform.position.y+0.5f, 0);
         }
 
+        render.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         body.velocity = Vector2.ClampMagnitude(body.velocity, maxVelocity);
+    }
+
+    public bool IsCarryingCharacter() {
+        return characterCarried != null;
+    }
+
+    public void DropCharacter() {
+        if (characterCarried == null) {
+            Debug.LogError("DropCharacter called without carried character");
+            return;
+        }
+
+        Destroy(characterCarried);
+        characterCarried = null;
+    }
+
+    // Circle Collider - Picking up characters
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        CharacterController cController = collision.GetComponent<CharacterController>();
+        if (characterToPickup == null && cController != null && cController.IsDead()) {
+            characterToPickup = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject == characterToPickup) {
+            characterToPickup = null;
+        }
     }
 
     // Gizmos

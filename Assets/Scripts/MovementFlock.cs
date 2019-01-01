@@ -29,20 +29,18 @@ public class MovementFlock : MonoBehaviour {
             if (coll.gameObject == this.gameObject)
                 continue;
 
-            if (coll.gameObject.tag == "Character") {
-                Vector2 collVelocity = coll.GetComponent<Rigidbody2D>().velocity;
-                float d = Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
+            Vector2 collVelocity = coll.GetComponent<Rigidbody2D>().velocity;
+            float d = Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
 
-                alignment += collVelocity;
-                cohesion += new Vector2(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y);
+            alignment += collVelocity;
+            cohesion += new Vector2(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y);
 
-                // Separation
-                Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
-                diff /= (d * d * d);
-                separation += diff;
+            // Separation
+            Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
+            diff /= (d * d * d);
+            separation += diff;
 
-                total++;
-            }
+            total++;
         }
 
         if (total > 0) {
