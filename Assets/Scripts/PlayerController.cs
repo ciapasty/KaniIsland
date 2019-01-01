@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float maxVelocity  = 10f;
+    public string player = "P1";
+
+    public float maxVelocity = 10f;
     public float moveForce = 2f;
 
     private float timeBtwAttack;
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     Animator anim;
     Rigidbody2D body;
     SpriteRenderer render;
-    
+
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -36,34 +38,29 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Movement
-        if (Input.GetKey(KeyCode.W)) {
+        if (Input.GetButton(player + "_Up")) {
             body.AddForce(Vector2.up.normalized * moveForce);
         }
 
-        if (Input.GetKey(KeyCode.S)) {
+        if (Input.GetButton(player + "_Down")) {
             body.AddForce(Vector2.down.normalized * moveForce);
         }
-
-        if (Input.GetKey(KeyCode.A)) {
+        if (Input.GetButton(player + "_Left")) {
             body.AddForce(Vector2.left.normalized * moveForce);
             transform.rotation = Quaternion.Euler(0, 180f, 0);
         }
 
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetButton(player + "_Right")) {
             body.AddForce(Vector2.right.normalized * moveForce);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (characterCarried == null) {
-            // Body pickup
-            if (Input.GetKeyDown(KeyCode.C)) {
 
-            }   
-
-            // Attack/Body pickup
-            if (timeBtwAttack <= 0) {
-                if (Input.GetKeyDown(KeyCode.Space)) {
-                    timeBtwAttack = startTimeBtwAttack;
+        // Attack/Body pickup
+        if (timeBtwAttack <= 0) {
+            if (Input.GetButtonDown(player + "_Action")) {
+                timeBtwAttack = startTimeBtwAttack;
+                if (characterCarried == null) {
                     if (characterToPickup != null) {
                         characterCarried = characterToPickup;
                         characterToPickup = null;
@@ -74,13 +71,19 @@ public class PlayerController : MonoBehaviour {
                     if (enemiesToHit.Length > 0) {
                         enemiesToHit[0].GetComponent<CharacterController>().Hit();
                     }
+                } else {
+                    characterCarried.transform.position = transform.position;
+                    characterToPickup = characterCarried;
+                    characterCarried = null;
                 }
-            } else {
-                timeBtwAttack -= Time.deltaTime;
             }
         } else {
+            timeBtwAttack -= Time.deltaTime;
+        }
+
+        if (characterCarried != null) {
             // Move Character with Player
-            characterCarried.transform.position = new Vector3(transform.position.x, transform.position.y+0.5f, 0);
+            characterCarried.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         }
 
         render.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour {
         return characterCarried != null;
     }
 
-    public void DropCharacter() {
+    public void DropCharacterToPot() {
         if (characterCarried == null) {
             Debug.LogError("DropCharacter called without carried character");
             return;
