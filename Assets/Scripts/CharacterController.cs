@@ -48,6 +48,10 @@ public class CharacterController : MonoBehaviour {
         }
     }
 
+    public void Drown() {
+        Destroy(this.gameObject);
+    }
+
     public void Hit() {
         isDead = true;
         flock.enabled = false;
