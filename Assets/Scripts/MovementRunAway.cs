@@ -15,18 +15,18 @@ public class MovementRunAway : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         Vector2 runAway = new Vector2();
 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, perceptionRadius, dangerLayerMask);
         foreach (var coll in hitColliders) {
-            float d = coll.Distance(this.gameObject.GetComponent<BoxCollider2D>()).distance; //Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
-            if (d > 0) {
-                Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
-                diff /= (d * d * d);
-                runAway += diff;
+            float d = coll.Distance(this.gameObject.GetComponent<CircleCollider2D>()).distance; //Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
+            if (d < 0.01f) {
+                d = 0.01f;
             }
+            Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
+            diff /= (d * d * d);
+            runAway += diff;
         }
 
         body.AddForce(Vector2.ClampMagnitude(runAway * maxForce, maxForce));

@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2213252520221700367}
   - component: {fileID: 2213252520221700361}
   - component: {fileID: 2213252520221700363}
-  - component: {fileID: 2213252520221700362}
+  - component: {fileID: 2112344528617505892}
   - component: {fileID: 2213252520221700373}
   - component: {fileID: 2213252520221700372}
   m_Layer: 9
@@ -155,8 +155,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &2213252520221700362
-BoxCollider2D:
+--- !u!58 &2112344528617505892
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,19 +168,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.1}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.18}
-  m_EdgeRadius: 0
+  m_Radius: 0.15
 --- !u!58 &2213252520221700373
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: P1
-  maxVelocity: 10
+  maxVelocity: 3
   moveForce: 50
   startTimeBtwAttack: 0
   attackPosition: {fileID: 2213252518972879278}

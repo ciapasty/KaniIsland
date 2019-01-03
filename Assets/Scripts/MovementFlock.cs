@@ -7,16 +7,13 @@ public class MovementFlock : MonoBehaviour {
     public float perceptionRadius = 2;
     public float maxForce = 50;
 
-    public LayerMask characterLayerMask;
-
     Rigidbody2D body;
-
 
     void Start() {
         body = GetComponent<Rigidbody2D>();
     }
-    
-    void Update() {
+
+    void FixedUpdate() {
         Vector2 acceleration = new Vector2();
         Vector2 alignment = new Vector2();
         Vector2 cohesion = new Vector2();
@@ -24,23 +21,25 @@ public class MovementFlock : MonoBehaviour {
 
         int total = 0;
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, perceptionRadius, characterLayerMask);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, perceptionRadius);
         foreach (var coll in hitColliders) {
-            if (coll.gameObject == this.gameObject)
-                continue;
+            if (coll.tag == "Character") {
+                if (coll.gameObject == this.gameObject)
+                    continue;
 
-            Vector2 collVelocity = coll.GetComponent<Rigidbody2D>().velocity;
-            float d = Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
+                Vector2 collVelocity = coll.GetComponent<Rigidbody2D>().velocity;
+                float d = Vector2.Distance(gameObject.transform.position, coll.gameObject.transform.position);
 
-            alignment += collVelocity;
-            cohesion += new Vector2(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y);
+                alignment += collVelocity;
+                cohesion += new Vector2(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y);
 
-            // Separation
-            Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
-            diff /= (d * d * d);
-            separation += diff;
+                // Separation
+                Vector2 diff = gameObject.transform.position - coll.gameObject.transform.position;
+                diff /= (d * d * d);
+                separation += diff;
 
-            total++;
+                total++;
+            }
         }
 
         if (total > 0) {

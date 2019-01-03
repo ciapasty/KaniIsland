@@ -85,8 +85,9 @@ public class PlayerController : MonoBehaviour {
             // Move Character with Player
             characterCarried.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         }
+    }
 
-        render.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+    void FixedUpdate() {
         body.velocity = Vector2.ClampMagnitude(body.velocity, maxVelocity);
     }
 

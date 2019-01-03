@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour {
     // Components
     Animator anim;
     Rigidbody2D body;
-    BoxCollider2D boxCollider;
+    Collider2D charCollider;
     SpriteRenderer render;
 
     // Movement components
@@ -21,14 +21,14 @@ public class CharacterController : MonoBehaviour {
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        charCollider = GetComponent<CircleCollider2D>();
         render = GetComponent<SpriteRenderer>();
         flock = GetComponent<MovementFlock>();
         runAway = GetComponent<MovementRunAway>();
 
-        maxVelocity = Random.Range(1.5f, 3);
-        GetComponent<MovementFlock>().perceptionRadius = Random.Range(1.5f, 2.5f);
-        GetComponent<MovementRunAway>().maxForce = Random.Range(10, 45);
+        maxVelocity = Random.Range(2f, 4f);
+        GetComponent<MovementFlock>().perceptionRadius = Random.Range(1, 2.5f);
+        GetComponent<MovementRunAway>().maxForce = Random.Range(30, 50);
     }
     
     void Update() {
@@ -46,10 +46,11 @@ public class CharacterController : MonoBehaviour {
             } else {
                 transform.rotation = Quaternion.Euler(0, 180f, 0);
             }
-
-            body.velocity = Vector2.ClampMagnitude(body.velocity, maxVelocity);
-            render.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
         }
+    }
+
+    void FixedUpdate() {
+        body.velocity = Vector2.ClampMagnitude(body.velocity, maxVelocity);
     }
 
     public void Drown() {
@@ -71,7 +72,7 @@ public class CharacterController : MonoBehaviour {
         isDead = true;
         flock.enabled = false;
         runAway.enabled = false;
-        boxCollider.isTrigger = true;
+        charCollider.isTrigger = true;
         gameObject.layer = 9;
     }
 
