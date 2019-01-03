@@ -63,6 +63,7 @@ public class CharacterController : MonoBehaviour {
 
     public void Hit() {
         KillCharacter();
+        GetComponent<ParticleSystem>().Play();
         anim.SetTrigger("Kill");
     }
 
