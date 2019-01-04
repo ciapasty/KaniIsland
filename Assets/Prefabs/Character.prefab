@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1979767837
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 08ab24de0d8b042f1babd761923100c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,6 +156,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxVelocity: 2
+  bloodSprites:
+  - {fileID: 21300000, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  - {fileID: 21300002, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  - {fileID: 21300004, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  - {fileID: 21300006, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  - {fileID: 21300008, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  - {fileID: 21300010, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
 --- !u!114 &690993952808007119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,9 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perceptionRadius: 2
   maxForce: 20
-  characterLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &5603689030172823740
 MonoBehaviour:
   m_ObjectHideFlags: 0

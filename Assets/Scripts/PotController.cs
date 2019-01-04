@@ -6,10 +6,6 @@ public class PotController : MonoBehaviour {
 
     public string playerTag;
 
-    private void Start() {
-        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-    }
-
     private int charactersInPot = 0;
 
     private void OnTriggerEnter2D(Collider2D collision) {

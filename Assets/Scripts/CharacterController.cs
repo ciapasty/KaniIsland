@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour {
 
     public float maxVelocity;
+    public Sprite[] bloodSprites;
 
     private bool isDead = false;
 
@@ -65,6 +66,7 @@ public class CharacterController : MonoBehaviour {
     public void Hit() {
         KillCharacter();
         GetComponent<ParticleSystem>().Play();
+        CreateBloodStain();
         anim.SetTrigger("Kill");
     }
 
@@ -78,5 +80,13 @@ public class CharacterController : MonoBehaviour {
 
     public bool IsDead() {
         return isDead;
+    }
+
+    private void CreateBloodStain() {
+        GameObject go = new GameObject();
+        go.transform.position = transform.position;
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = bloodSprites[Random.Range(0, bloodSprites.Length - 1)];
+        sr.sortingLayerName = "Background";
     }
 }

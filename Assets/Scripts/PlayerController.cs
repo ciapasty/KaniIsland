@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour {
                         return;
                     }
 
+                    anim.SetTrigger("attack");
                     Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
                     if (enemiesToHit.Length > 0) {
                         enemiesToHit[0].GetComponent<CharacterController>().Hit();
