@@ -96,14 +96,15 @@ public class PlayerController : MonoBehaviour {
         return characterCarried != null;
     }
 
-    public void DropCharacterToPot() {
+    public GameObject DropCharacterToPot() {
         if (characterCarried == null) {
             Debug.LogError("DropCharacter called without carried character");
-            return;
+            return null;
         }
 
-        Destroy(characterCarried);
+        GameObject c = characterCarried;
         characterCarried = null;
+        return c;
     }
 
     // Circle Collider - Picking up characters

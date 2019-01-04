@@ -273,6 +273,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player 1
+  ingredientsPanel: {fileID: 0}
+  ingredientImagePrefab: {fileID: 5972045225865846423, guid: a03aa048b0b8240848f75255258a48fb,
+    type: 3}
+  correctSprite: {fileID: 21300000, guid: aa5802caf2efc430cb7725262197f140, type: 3}
+  wrongSprite: {fileID: 21300000, guid: e844f0046f8994d8fa24d038c8f569f6, type: 3}
+  availableIngredients:
+  - {fileID: 21300000, guid: 08ab24de0d8b042f1babd761923100c7, type: 3}
 --- !u!1 &7364587371787023190
 GameObject:
   m_ObjectHideFlags: 0

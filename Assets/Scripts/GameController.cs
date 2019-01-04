@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    // Menu
+
     public void OnResumeClick() {
         HideMenuResumeGame();
     }
@@ -40,6 +42,8 @@ public class GameController : MonoBehaviour {
         menuCanvas.SetActive(true);
         Time.timeScale = 0;
     }
+
+    // Scene transition
 
     IEnumerator LoadMenuSceneAsync() {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/MainMenuScene");
