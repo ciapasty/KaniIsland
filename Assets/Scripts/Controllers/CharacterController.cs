@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour {
 
     public float maxVelocity;
+    public AudioClip hitSound;
+    public AudioClip[] deathSounds;
     public Sprite[] bloodSprites;
 
     private bool isDead = false;
@@ -14,6 +16,7 @@ public class CharacterController : MonoBehaviour {
     Rigidbody2D body;
     Collider2D charCollider;
     SpriteRenderer render;
+    AudioSource audioSource;
 
     // Movement components
     MovementFlock flock;
@@ -24,6 +27,7 @@ public class CharacterController : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         charCollider = GetComponent<CircleCollider2D>();
         render = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         flock = GetComponent<MovementFlock>();
         runAway = GetComponent<MovementRunAway>();
 
@@ -64,6 +68,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     public void Hit() {
+        audioSource.PlayOneShot(hitSound);
         KillCharacter();
         GetComponent<ParticleSystem>().Play();
         CreateBloodStain();
@@ -76,6 +81,7 @@ public class CharacterController : MonoBehaviour {
         runAway.enabled = false;
         charCollider.isTrigger = true;
         gameObject.layer = 9;
+        audioSource.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
     }
 
     public bool IsDead() {

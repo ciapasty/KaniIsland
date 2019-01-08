@@ -16,17 +16,22 @@ public class PlayerController : MonoBehaviour {
     public float attackRange;
     public LayerMask characterLayerMask;
 
+    public AudioClip attackSound;
+    public AudioClip pickupSound;
+
     private GameObject characterToPickup;
     private GameObject characterCarried;
 
     Animator anim;
     Rigidbody2D body;
     SpriteRenderer render;
+    AudioSource audioSource;
 
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         render = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -64,14 +69,11 @@ public class PlayerController : MonoBehaviour {
                     if (characterToPickup != null) {
                         characterCarried = characterToPickup;
                         characterToPickup = null;
+                        audioSource.PlayOneShot(pickupSound);
                         return;
                     }
 
                     anim.SetTrigger("attack");
-                    Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
-                    if (enemiesToHit.Length > 0) {
-                        enemiesToHit[0].GetComponent<CharacterController>().Hit();
-                    }
                 } else {
                     characterCarried.transform.position = transform.position;
                     characterToPickup = characterCarried;
@@ -105,6 +107,14 @@ public class PlayerController : MonoBehaviour {
         GameObject c = characterCarried;
         characterCarried = null;
         return c;
+    }
+
+    public void OnAttack() {
+        audioSource.PlayOneShot(attackSound);
+        Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
+        if (enemiesToHit.Length > 0) {
+            enemiesToHit[0].GetComponent<CharacterController>().Hit();
+        }
     }
 
     // Circle Collider - Picking up characters

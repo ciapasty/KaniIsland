@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b337c3c50378f477ca46d6b51e83564e, type: 3}
+  m_Name: Player 1 Soup
+  m_EditorClassIdentifier: 
+  playerTag: Player 1
+  onNewIngredients: {fileID: 11400000, guid: 768db9ca8669245729710739aa6ea8a6, type: 2}
+  onIngredientDelivered: {fileID: 11400000, guid: a23108e1d1ca74bf1895f16f940a217b,
+    type: 2}
+  onSoupComplete: {fileID: 11400000, guid: 7638bf90569b74cffb305dfabad9db69, type: 2}
+  availableIngredients: {fileID: 11400000, guid: 80d190a6263b246a9ac367b2bcfd10f1,
+    type: 2}

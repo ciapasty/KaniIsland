@@ -12,8 +12,7 @@ public class MouseController : MonoBehaviour {
     
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            GameObject mob = Instantiate(mobPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            mob.transform.position = new Vector3(mob.transform.position.x, mob.transform.position.y, 0);
+            Camera.main.GetComponent<CameraShake>().TriggerShake(2f);
         }
     }
 }

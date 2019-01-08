@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -752,6 +753,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3777a1c7e8d94d0587077205a862ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeMagnitude: 0.2
+  dampingSpeed: 1
 --- !u!1 &520479756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5897,7 +5912,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5905,7 +5920,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 672316589
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &694963367
@@ -5923,6 +5938,7 @@ RectTransform:
   - {fileID: 2016210393}
   - {fileID: 1805426697}
   - {fileID: 2146283295}
+  - {fileID: 903631876}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6133,6 +6149,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &811669647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1061473003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d9254ce5f5d4dd583073a967584acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836766670
 GameObject:
   m_ObjectHideFlags: 0
@@ -6203,6 +6231,105 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.31}
   m_EdgeRadius: 0
+--- !u!1 &903631875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903631876}
+  - component: {fileID: 903631879}
+  - component: {fileID: 903631878}
+  - component: {fileID: 903631877}
+  m_Layer: 5
+  m_Name: IslandGodText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &903631876
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903631875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 694963367}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 666, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &903631877
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903631875}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bbaa14e154aa2433fa0faaa4234fb686, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &903631878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903631875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 51
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: The Island God is pleased!
+--- !u!222 &903631879
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903631875}
+  m_CullTransparentMesh: 0
 --- !u!1 &921338216
 GameObject:
   m_ObjectHideFlags: 0
@@ -6464,6 +6591,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2213252520221700366, guid: 458f82f4c0fba45d3a4494fd865aa15b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2213252520221700360, guid: 458f82f4c0fba45d3a4494fd865aa15b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6561,8 +6693,34 @@ PrefabInstance:
     - target: {fileID: 5206616556704119523, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
       propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119523, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: playerTag
       value: Player 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: ingredientsPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: ipsGO
+      value: 
+      objectReference: {fileID: 1805426696}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: soupData
+      value: 
+      objectReference: {fileID: 11400000, guid: d30e0ea3733bf489ea73721a2b74cd40,
+        type: 2}
     - target: {fileID: 5206616556704119520, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6618,21 +6776,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+    - target: {fileID: 379708572922354924, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
-      propertyPath: playerTag
-      value: Player 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
-        type: 3}
-      propertyPath: ingredientsPanel
+      propertyPath: Event
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
-        type: 3}
-      propertyPath: ipsGO
-      value: 
-      objectReference: {fileID: 1805426696}
+      objectReference: {fileID: 11400000, guid: 56c8021d5ef4c4a4d9bdfd469ad1cf66,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ba234c89dba4b0fb96c83e34a7ffdd, type: 3}
 --- !u!1 &1093894342
@@ -6676,7 +6825,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8117d5dd4a54c41239a62ed871036c8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d9254ce5f5d4dd583073a967584acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1244019791
@@ -6792,10 +6941,52 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 694963367}
     m_Modifications:
+    - target: {fileID: 1571749698477419323, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 56c8021d5ef4c4a4d9bdfd469ad1cf66,
+        type: 2}
+    - target: {fileID: 812045189959433639, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 8250a86cca7e34cf38362f48c461b300,
+        type: 2}
+    - target: {fileID: 620429878628629742, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ec582276b0804d07a32a84cdcf975da,
+        type: 2}
+    - target: {fileID: 5765077269340822670, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: soupData
+      value: 
+      objectReference: {fileID: 11400000, guid: d30e0ea3733bf489ea73721a2b74cd40,
+        type: 2}
+    - target: {fileID: 5765077269340822670, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: islandGodText
+      value: 
+      objectReference: {fileID: 903631875}
+    - target: {fileID: 0}
+      propertyPath: pot
+      value: 
+      objectReference: {fileID: 811669647}
+    - target: {fileID: 0}
+      propertyPath: islandGodText
+      value: 
+      objectReference: {fileID: 903631875}
     - target: {fileID: 1930179558294759595, guid: dae418da4538744eda60d9b9d82691d5,
         type: 3}
       propertyPath: m_Name
       value: Ingredients Panel 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930179558294759595, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1930179558294759592, guid: dae418da4538744eda60d9b9d82691d5,
         type: 3}
@@ -12246,7 +12437,7 @@ MonoBehaviour:
     m_FontSize: 23
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -12516,6 +12707,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 694963367}
     m_Modifications:
+    - target: {fileID: 5765077269340822670, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: islandGodText
+      value: 
+      objectReference: {fileID: 903631875}
+    - target: {fileID: 5765077269340822670, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: ingredientsData
+      value: 
+      objectReference: {fileID: 11400000, guid: a2e8d695536454a1792db659beb6eca1,
+        type: 2}
+    - target: {fileID: 5765077269340822670, guid: dae418da4538744eda60d9b9d82691d5,
+        type: 3}
+      propertyPath: soupData
+      value: 
+      objectReference: {fileID: 11400000, guid: cdfbe37a5f4694b378273299b23096c7,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: pot
+      value: 
+      objectReference: {fileID: 1209920469}
+    - target: {fileID: 0}
+      propertyPath: islandGodText
+      value: 
+      objectReference: {fileID: 903631875}
+    - target: {fileID: 0}
+      propertyPath: igd
+      value: 
+      objectReference: {fileID: 11400000, guid: a2e8d695536454a1792db659beb6eca1,
+        type: 2}
     - target: {fileID: 1930179558294759595, guid: dae418da4538744eda60d9b9d82691d5,
         type: 3}
       propertyPath: m_Name
@@ -12626,11 +12847,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1930179558294759596, guid: dae418da4538744eda60d9b9d82691d5,
-        type: 3}
-      propertyPath: pot
-      value: 
-      objectReference: {fileID: 1209920469}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae418da4538744eda60d9b9d82691d5, type: 3}
 --- !u!1001 &2213252519877279076
@@ -12714,6 +12930,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1 Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: ingredientsPanel
+      value: 
+      objectReference: {fileID: 492636937}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: ipsGO
+      value: 
+      objectReference: {fileID: 492636937}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: a23108e1d1ca74bf1895f16f940a217b,
+        type: 2}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: OnIngredientDelivered
+      value: 
+      objectReference: {fileID: 11400000, guid: a23108e1d1ca74bf1895f16f940a217b,
+        type: 2}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: ingredientsData
+      value: 
+      objectReference: {fileID: 11400000, guid: a2e8d695536454a1792db659beb6eca1,
+        type: 2}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: playerTag
+      value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: soupData
+      value: 
+      objectReference: {fileID: 11400000, guid: cdfbe37a5f4694b378273299b23096c7,
+        type: 2}
     - target: {fileID: 5206616556704119520, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12769,15 +13034,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
-        type: 3}
-      propertyPath: ingredientsPanel
-      value: 
-      objectReference: {fileID: 492636937}
-    - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
-        type: 3}
-      propertyPath: ipsGO
-      value: 
-      objectReference: {fileID: 492636937}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ba234c89dba4b0fb96c83e34a7ffdd, type: 3}
