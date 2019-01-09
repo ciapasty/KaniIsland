@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour {
 
-    public GameObject mobPrefab;
+    public SoupData soupData;
 
     void Start() {
 
@@ -12,7 +12,7 @@ public class MouseController : MonoBehaviour {
     
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Camera.main.GetComponent<CameraShake>().TriggerShake(2f);
+            soupData.GetNewIngredients();
         }
     }
 }

@@ -66,6 +66,7 @@ public class SoupData : ScriptableObject {
         // Check if recipe is complete
         if (AllIngredientsDelivered()) {
             onSoupComplete.Raise();
+
             // TODO: Detect if all ingredients were correct
             //if (AllIngredientsCorrect()) {
             //    // TODO: Points counting

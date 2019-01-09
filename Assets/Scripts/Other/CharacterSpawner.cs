@@ -15,7 +15,7 @@ public class CharacterSpawner : MonoBehaviour {
             if (spawnTimer <= 0) {
                 spawnCount = Random.Range(1, 10);
                 for (int i = 0; i < spawnCount; i++) {
-                    GameObject go = Instantiate(character, new Vector3(Random.Range(-4, 4), 4, 0), Quaternion.identity);
+                    GameObject go = Instantiate(character, new Vector3(Random.Range(-2, 2), transform.position.y, 0), Quaternion.identity);
                     go.name = go.GetComponent<SpriteRenderer>().sprite.name;
                     go.transform.SetParent(this.transform);
                 }

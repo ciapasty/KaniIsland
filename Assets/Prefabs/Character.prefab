@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c8318c48ca245a8b2316f26d65b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionRadius: 2
+  perceptionRadius: 1.5
   maxForce: 20
 --- !u!114 &5603689030172823740
 MonoBehaviour:
@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0a6392111c43758700f51b1238b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionRadius: 2
-  maxForce: 35
+  perceptionRadius: 1
+  maxForce: 45
   dangerLayerMask:
     serializedVersion: 2
     m_Bits: 512

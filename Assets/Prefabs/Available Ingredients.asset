@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22fc433d9e5bc40c7871ed4ab35b5c96, type: 3}
-  m_Name: AvailableIngredients
+  m_Name: Available Ingredients
   m_EditorClassIdentifier: 
   collection:
   - {fileID: 21300000, guid: 08ab24de0d8b042f1babd761923100c7, type: 3}

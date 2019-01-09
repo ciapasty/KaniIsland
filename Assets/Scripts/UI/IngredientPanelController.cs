@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class IngredientPanelController : MonoBehaviour {
@@ -24,14 +25,7 @@ public class IngredientPanelController : MonoBehaviour {
     public void OnNewIngredients() {
         if (ingredientsGOs != null) DestroyIngredientImageGOs();
 
-        Ingredient[] igns = soupData.GetIngredients();
-        ingredientsGOs = new GameObject[igns.Length];
-
-        for (int i = 0; i < igns.Length; i++) {
-            ingredientsGOs[i] = CreateIngredientImageGO(igns[i].sprite);
-        }
-
-        ingredientsPrev = igns;
+        StartCoroutine("NewIngredientsDelay");
     }
 
     public void OnIngredientDelivered() {
@@ -50,6 +44,22 @@ public class IngredientPanelController : MonoBehaviour {
         islandGodText.GetComponent<Animator>().SetTrigger("ShowText");
     }
 
+    private IEnumerator NewIngredientsDelay() {
+        yield return new WaitForSeconds(0.6f);
+        GetNewIngredients();
+    }
+
+    private void GetNewIngredients() {
+        Ingredient[] igns = soupData.GetIngredients();
+        ingredientsGOs = new GameObject[igns.Length];
+
+        for (int i = 0; i < igns.Length; i++) {
+            ingredientsGOs[i] = CreateIngredientImageGO(igns[i].sprite);
+        }
+
+        ingredientsPrev = igns;
+    }
+
     private void UpdateIngredientImage(int index, IngredientState state) {
         GameObject child = ingredientsGOs[index].transform.GetChild(1).gameObject;
         UnityEngine.UI.Image correctImage = child.GetComponent<UnityEngine.UI.Image>();
@@ -63,20 +73,23 @@ public class IngredientPanelController : MonoBehaviour {
             audioSource.PlayOneShot(wrongSound);
         }
 
-        child.GetComponent<Animator>().SetTrigger("SetState");
+        Animator ignAnim = ingredientsGOs[index].GetComponent<Animator>();
+        ignAnim.SetFloat("Speed", Random.Range(0.8f, 1.2f));
+        ignAnim.SetTrigger("Delivered");
 
     }
 
     private GameObject CreateIngredientImageGO(Sprite sprite) {
         GameObject go = Instantiate(ingredientImagePrefab);
         go.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+        go.GetComponent<Animator>().SetFloat("Speed", Random.Range(0.8f, 1.2f));
         go.transform.SetParent(transform);
         return go;
     }
 
     private void DestroyIngredientImageGOs() {
-        for (int i = 0; i < transform.childCount; i++) {
-            Destroy(transform.GetChild(i).gameObject);
+        for (int i = 0; i < ingredientsGOs.Length; i++) {
+            ingredientsGOs[i].GetComponent<Animator>().SetTrigger("Disappear");
         }
         ingredientsGOs = null;
     }
