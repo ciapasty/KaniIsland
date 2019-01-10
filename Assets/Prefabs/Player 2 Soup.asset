@@ -17,5 +17,5 @@ MonoBehaviour:
   onIngredientDelivered: {fileID: 11400000, guid: 8250a86cca7e34cf38362f48c461b300,
     type: 2}
   onSoupComplete: {fileID: 11400000, guid: 56c8021d5ef4c4a4d9bdfd469ad1cf66, type: 2}
-  availableIngredients: {fileID: 11400000, guid: 80d190a6263b246a9ac367b2bcfd10f1,
+  availableIngredients: {fileID: 11400000, guid: 098f2c4cf4d814f0bb58871654292ff7,
     type: 2}

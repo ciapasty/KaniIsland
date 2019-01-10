@@ -81,7 +81,7 @@ public class IngredientPanelController : MonoBehaviour {
 
     private GameObject CreateIngredientImageGO(Sprite sprite) {
         GameObject go = Instantiate(ingredientImagePrefab);
-        go.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+        go.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = sprite;
         go.GetComponent<Animator>().SetFloat("Speed", Random.Range(0.8f, 1.2f));
         go.transform.SetParent(transform);
         return go;

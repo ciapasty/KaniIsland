@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22fc433d9e5bc40c7871ed4ab35b5c96, type: 3}
-  m_Name: Available Ingredients
+  m_Script: {fileID: 11500000, guid: 015b5b53fd41d4d8dae0f4857a577e7e, type: 3}
+  m_Name: Tourists
   m_EditorClassIdentifier: 
-  collection:
-  - {fileID: 21300000, guid: 08ab24de0d8b042f1babd761923100c7, type: 3}
+  prefabs:
+  - {fileID: 690993952808007109, guid: 49cf435e2b9d14abdb6e068dda03d44a, type: 3}

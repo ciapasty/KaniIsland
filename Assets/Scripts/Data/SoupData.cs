@@ -16,7 +16,7 @@ public class SoupData : ScriptableObject {
     public GameEvent onNewIngredients;
     public GameEvent onIngredientDelivered;
     public GameEvent onSoupComplete;
-    public SpriteCollection availableIngredients;
+    public PrefabCollection availableIngredients;
 
     public Ingredient[] ingredients;
 
@@ -31,9 +31,9 @@ public class SoupData : ScriptableObject {
 
         for (int i = 0; i < count; i++) {
             Ingredient ign = new Ingredient();
-            Sprite sprite = availableIngredients.collection[
-                    Random.Range(0, availableIngredients.collection.Length - 1)
-                ];
+            Sprite sprite = availableIngredients.prefabs[
+                    Random.Range(0, availableIngredients.prefabs.Length - 1)
+                ].GetComponent<SpriteRenderer>().sprite;
             ign.sprite = sprite;
             ign.state = IngredientState.Waiting;
             ingredients[i] = ign;
