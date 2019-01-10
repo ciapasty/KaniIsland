@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1944026046901245143}
   - component: {fileID: 1538467719741005023}
   m_Layer: 8
-  m_Name: Character
+  m_Name: NPC
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,10 +249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 690993952808007109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eae030788a74456a91254137c34a1d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c87fb67beca840b68d979bace189b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 2
+  maxVelocity: 0
   hitSound: {fileID: 8300000, guid: 4954e591f184d4f3485d3951df3dce5e, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 54eda754fac1c4036bb28e20fe938bbb, type: 3}
@@ -272,6 +272,7 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
   - {fileID: 21300008, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
   - {fileID: 21300010, guid: 4f0d61081b8a243e3bcac2259cb5822c, type: 3}
+  isPickable: 1
 --- !u!114 &690993952808007119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0a6392111c43758700f51b1238b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionRadius: 1
+  perceptionRadius: 1.5
   maxForce: 45
   dangerLayerMask:
     serializedVersion: 2

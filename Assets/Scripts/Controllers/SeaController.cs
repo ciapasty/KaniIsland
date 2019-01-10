@@ -6,7 +6,7 @@ public class SeaController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Character") {
-            collision.gameObject.GetComponent<CharacterController>().Drown();
+            collision.gameObject.GetComponent<NpcController>().Drown();
         }
     }
 

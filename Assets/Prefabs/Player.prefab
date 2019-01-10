@@ -299,7 +299,8 @@ MonoBehaviour:
   player: P1
   maxVelocity: 3
   moveForce: 50
-  startTimeBtwAttack: 0
+  startTimeBtwAttack: 0.6
+  startTimeStunned: 2
   attackPosition: {fileID: 2213252518972879278}
   attackRange: 0.36
   characterLayerMask:

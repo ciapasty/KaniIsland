@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CharacterController : MonoBehaviour {
+public class NpcController : MonoBehaviour {
 
     public float maxVelocity;
     public AudioClip hitSound;
@@ -8,6 +8,8 @@ public class CharacterController : MonoBehaviour {
     public Sprite[] bloodSprites;
 
     private bool isDead = false;
+    [HideInInspector]
+    public bool isPickable = true;
 
     // Components
     Animator anim;
@@ -66,11 +68,13 @@ public class CharacterController : MonoBehaviour {
     }
 
     public void Hit() {
-        audioSource.PlayOneShot(hitSound);
-        KillCharacter();
-        GetComponent<ParticleSystem>().Play();
-        CreateBloodStain();
-        anim.SetTrigger("Kill");
+        if (!isDead) {
+            audioSource.PlayOneShot(hitSound);
+            KillCharacter();
+            GetComponent<ParticleSystem>().Play();
+            CreateBloodStain();
+            anim.SetTrigger("Kill");
+        }
     }
 
     public void KillCharacter() {

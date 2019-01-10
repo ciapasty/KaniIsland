@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 
+    private float timeStunned;
+    public float startTimeStunned;
+
     public Transform attackPosition;
     public float attackRange;
     public LayerMask characterLayerMask;
@@ -35,53 +38,56 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        // Animation
-        if (body.velocity.magnitude > 0.3f) {
-            anim.SetBool("isWalking", true);
-        } else {
-            anim.SetBool("isWalking", false);
-        }
+        if (timeStunned <= 0) {
 
-        // Movement
-        if (Input.GetButton(player + "_Up")) {
-            body.AddForce(Vector2.up.normalized * moveForce);
-        }
+            anim.SetBool("isStunned", false);
 
-        if (Input.GetButton(player + "_Down")) {
-            body.AddForce(Vector2.down.normalized * moveForce);
-        }
-        if (Input.GetButton(player + "_Left")) {
-            body.AddForce(Vector2.left.normalized * moveForce);
-            transform.rotation = Quaternion.Euler(0, 180f, 0);
-        }
+            //  Walking animation
+            if (body.velocity.magnitude > 0.3f) {
+                anim.SetBool("isWalking", true);
+            } else {
+                anim.SetBool("isWalking", false);
+            }
 
-        if (Input.GetButton(player + "_Right")) {
-            body.AddForce(Vector2.right.normalized * moveForce);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+            // Movement
+            if (Input.GetButton(player + "_Up")) {
+                body.AddForce(Vector2.up.normalized * moveForce);
+            }
+
+            if (Input.GetButton(player + "_Down")) {
+                body.AddForce(Vector2.down.normalized * moveForce);
+            }
+            if (Input.GetButton(player + "_Left")) {
+                body.AddForce(Vector2.left.normalized * moveForce);
+                transform.rotation = Quaternion.Euler(0, 180f, 0);
+            }
+
+            if (Input.GetButton(player + "_Right")) {
+                body.AddForce(Vector2.right.normalized * moveForce);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
 
 
-        // Attack/Body pickup
-        if (timeBtwAttack <= 0) {
-            if (Input.GetButtonDown(player + "_Action")) {
-                timeBtwAttack = startTimeBtwAttack;
-                if (characterCarried == null) {
-                    if (characterToPickup != null) {
-                        characterCarried = characterToPickup;
-                        characterToPickup = null;
-                        audioSource.PlayOneShot(pickupSound);
-                        return;
+            // Attack/Body pickup
+            if (timeBtwAttack <= 0) {
+                if (Input.GetButtonDown(player + "_Action")) {
+                    timeBtwAttack = startTimeBtwAttack;
+                    if (characterCarried == null) {
+                        if (characterToPickup != null) {
+                            PickupCharacter();
+                            return;
+                        }
+
+                        anim.SetTrigger("attack");
+                    } else {
+                        DropCharacter();
                     }
-
-                    anim.SetTrigger("attack");
-                } else {
-                    characterCarried.transform.position = transform.position;
-                    characterToPickup = characterCarried;
-                    characterCarried = null;
                 }
+            } else {
+                timeBtwAttack -= Time.deltaTime;
             }
         } else {
-            timeBtwAttack -= Time.deltaTime;
+            timeStunned -= Time.deltaTime;
         }
 
         if (characterCarried != null) {
@@ -98,30 +104,64 @@ public class PlayerController : MonoBehaviour {
         return characterCarried != null;
     }
 
+    public void PickupCharacter() {
+        characterCarried = characterToPickup;
+        characterCarried.GetComponent<NpcController>().isPickable = false;
+        characterToPickup = null;
+        audioSource.PlayOneShot(pickupSound);
+    }
+
+    public void DropCharacter() {
+        if (characterCarried != null) {
+            characterCarried.transform.position = transform.position;
+            characterCarried.GetComponent<NpcController>().isPickable = true;
+            characterToPickup = characterCarried;
+            characterCarried = null;
+        }
+    }
+
     public GameObject DropCharacterToPot() {
         if (characterCarried == null) {
             Debug.LogError("DropCharacter called without carried character");
             return null;
         }
-
         GameObject c = characterCarried;
         characterCarried = null;
         return c;
     }
 
+    public void Hit() {
+        timeStunned = startTimeStunned;
+        DropCharacter();
+        anim.SetBool("isStunned", true);
+    }
+
     public void OnAttack() {
         audioSource.PlayOneShot(attackSound);
-        Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, characterLayerMask);
+        Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPosition.position, attackRange);
         if (enemiesToHit.Length > 0) {
-            enemiesToHit[0].GetComponent<CharacterController>().Hit();
+            for (int i = 0; i < enemiesToHit.Length; i++) {
+                if (enemiesToHit[i].gameObject != this.gameObject) {
+                    NpcController cc = enemiesToHit[i].GetComponent<NpcController>();
+                    PlayerController pc = enemiesToHit[i].GetComponent<PlayerController>();
+                    if (cc != null) {
+                        cc.Hit();
+                        break;
+                    } else if (pc != null) {
+                        pc.Hit();
+                        break;
+                    }
+                }
+            }
         }
     }
 
     // Circle Collider - Picking up characters
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        CharacterController cController = collision.GetComponent<CharacterController>();
-        if (characterToPickup == null && cController != null && cController.IsDead()) {
+        NpcController cController = collision.GetComponent<NpcController>();
+        if (characterToPickup == null && cController != null &&
+                cController.IsDead() && cController.isPickable) {
             characterToPickup = collision.gameObject;
         }
     }
