@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public abstract class RuntimeSe<T> : ScriptableObject
+public abstract class RuntimeSet<T> : ScriptableObject
 {
     public List<T> Items = new List<T>();
 

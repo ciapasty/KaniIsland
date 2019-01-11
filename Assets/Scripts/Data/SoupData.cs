@@ -20,6 +20,8 @@ public class SoupData : ScriptableObject {
 
     public Ingredient[] ingredients;
 
+    public int points = 0;
+
     public Ingredient[] GetIngredients() {
         return ingredients != null ? (Ingredient[])ingredients.Clone() : new Ingredient[0];
     }
@@ -65,17 +67,17 @@ public class SoupData : ScriptableObject {
     private void IngredientsCollectedCheck() {
         // Check if recipe is complete
         if (AllIngredientsDelivered()) {
-            onSoupComplete.Raise();
+            if (AllIngredientsCorrect()) {
+                points += ingredients.Length * 2;
+                onSoupComplete.Raise();
+            } else {
+                for (int i = 0; i < ingredients.Length; i++) {
+                    if (ingredients[i].state == IngredientState.Delivered)
+                        points += 1;
+                }
+            }
 
-            // TODO: Detect if all ingredients were correct
-            //if (AllIngredientsCorrect()) {
-            //    // TODO: Points counting
-            //    onSoupComplete.Raise();
-            //} else {
-            //    // TODO: Points counting
-            //    onSoupComplete.Raise();
-            //    Debug.Log("Congratulations! Soup prepared correctly!");
-            //}
+            Debug.Log(playerTag + " has " + points + " points.");
 
             GetNewIngredients();
         }

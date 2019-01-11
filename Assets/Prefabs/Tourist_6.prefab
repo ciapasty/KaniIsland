@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1944026046901245143}
   - component: {fileID: 1538467719741005023}
   m_Layer: 8
-  m_Name: Tourist_1
+  m_Name: Tourist_6
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -1979767837
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1c6341308383f413db8723c98c1702cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55770e61b3b9440cd9acf1ed24a4a9ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 690993952808007109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 57f6ae1fd1ad24387bfdbb724641563f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 48c2d18408da24f81812133888f72a03, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c87fb67beca840b68d979bace189b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 4
+  maxVelocity: 0
   hitSound: {fileID: 8300000, guid: 4954e591f184d4f3485d3951df3dce5e, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 54eda754fac1c4036bb28e20fe938bbb, type: 3}
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c8318c48ca245a8b2316f26d65b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionRadius: 1.5
-  maxForce: 20
+  perceptionRadius: 2
+  maxForce: 32.5
 --- !u!114 &5603689030172823740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0a6392111c43758700f51b1238b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionRadius: 2
-  maxForce: 45
+  perceptionRadius: 1
+  maxForce: 29
   dangerLayerMask:
     serializedVersion: 2
     m_Bits: 512

@@ -6537,7 +6537,7 @@ GameObject:
   - component: {fileID: 947177605}
   - component: {fileID: 947177606}
   m_Layer: 0
-  m_Name: Character Spawner
+  m_Name: NPC Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6566,11 +6566,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 947177604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dced564c844f4b8e94730af6b44b2f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 22f3482786e454065ae9677be2c61b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 690993952808007109, guid: 49cf435e2b9d14abdb6e068dda03d44a,
-    type: 3}
+  npcs: {fileID: 11400000, guid: 098f2c4cf4d814f0bb58871654292ff7, type: 2}
+  spawnCount: 4
+  characterLimit: 25
 --- !u!1001 &1055296858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6651,16 +6652,21 @@ PrefabInstance:
     - target: {fileID: 2213252520221700367, guid: 458f82f4c0fba45d3a4494fd865aa15b,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.8
+      value: 0.8666667
       objectReference: {fileID: 0}
     - target: {fileID: 2213252520221700367, guid: 458f82f4c0fba45d3a4494fd865aa15b,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.4
+      value: 0.2784314
       objectReference: {fileID: 0}
     - target: {fileID: 2213252520221700367, guid: 458f82f4c0fba45d3a4494fd865aa15b,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213252520221700367, guid: 458f82f4c0fba45d3a4494fd865aa15b,
+        type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2213252520221700373, guid: 458f82f4c0fba45d3a4494fd865aa15b,
@@ -6778,6 +6784,12 @@ PrefabInstance:
       propertyPath: Event
       value: 
       objectReference: {fileID: 11400000, guid: 56c8021d5ef4c4a4d9bdfd469ad1cf66,
+        type: 2}
+    - target: {fileID: 8801451258077699444, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ec582276b0804d07a32a84cdcf975da,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ba234c89dba4b0fb96c83e34a7ffdd, type: 3}

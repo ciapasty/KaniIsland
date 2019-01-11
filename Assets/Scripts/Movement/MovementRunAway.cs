@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MovementRunAway : MonoBehaviour {
 
+    [Range(1, 2)]
     public float perceptionRadius = 2;
+    [Range(20, 50)]
     public float maxForce = 50;
 
     public LayerMask dangerLayerMask;

@@ -9665,6 +9665,7 @@ GameObject:
   - component: {fileID: 8204014567415636420}
   - component: {fileID: 5206616556704119527}
   - component: {fileID: 379708572922354924}
+  - component: {fileID: 8801451258077699444}
   m_Layer: 9
   m_Name: Pot
   m_TagString: Untagged
@@ -9846,6 +9847,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5206616556704119527}
         m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &8801451258077699444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5206616556704119523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8831048890be34aa6b6f11d198efbb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 768db9ca8669245729710739aa6ea8a6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5206616556704119527}
+        m_MethodName: RemoveCharactersFromPot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

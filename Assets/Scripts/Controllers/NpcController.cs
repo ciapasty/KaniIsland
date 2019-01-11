@@ -2,6 +2,7 @@
 
 public class NpcController : MonoBehaviour {
 
+    [Range(2f, 4f)]
     public float maxVelocity;
     public AudioClip hitSound;
     public AudioClip[] deathSounds;
@@ -32,23 +33,21 @@ public class NpcController : MonoBehaviour {
         runAway = GetComponent<MovementRunAway>();
 
         maxVelocity = Random.Range(2f, 4f);
-        GetComponent<MovementFlock>().perceptionRadius = Random.Range(1, 2.5f);
-        GetComponent<MovementRunAway>().maxForce = Random.Range(30, 50);
     }
     
     void Update() {
         if (!isDead) {
             // Walking animation
-            if (Mathf.Abs(body.velocity.magnitude) > 0.2) {
+            if (Mathf.Abs(body.velocity.magnitude) > 0.5) {
                 anim.SetBool("isWalking", true);
             } else {
                 anim.SetBool("isWalking", false);
             }
 
             // Sprite flip
-            if (body.velocity.x >= 0) {
+            if (body.velocity.x >= 0.5f) {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-            } else {
+            } else if (body.velocity.x <= -0.5f) {
                 transform.rotation = Quaternion.Euler(0, 180f, 0);
             }
         }

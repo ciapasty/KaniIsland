@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MovementFlock : MonoBehaviour {
 
+    [Range(1, 2)]
     public float perceptionRadius = 2;
+    [Range(20, 50)]
     public float maxForce = 50;
 
     Rigidbody2D body;
