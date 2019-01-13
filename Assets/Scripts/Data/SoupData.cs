@@ -22,6 +22,10 @@ public class SoupData : ScriptableObject {
 
     public int points = 0;
 
+    private void OnEnable() {
+        points = 0;
+    }
+
     public Ingredient[] GetIngredients() {
         return ingredients != null ? (Ingredient[])ingredients.Clone() : new Ingredient[0];
     }
@@ -34,7 +38,7 @@ public class SoupData : ScriptableObject {
         for (int i = 0; i < count; i++) {
             Ingredient ign = new Ingredient();
             Sprite sprite = availableIngredients.prefabs[
-                    Random.Range(0, availableIngredients.prefabs.Length - 1)
+                    Random.Range(0, availableIngredients.prefabs.Length)
                 ].GetComponent<SpriteRenderer>().sprite;
             ign.sprite = sprite;
             ign.state = IngredientState.Waiting;

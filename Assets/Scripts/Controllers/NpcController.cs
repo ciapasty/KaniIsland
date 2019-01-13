@@ -91,7 +91,9 @@ public class NpcController : MonoBehaviour {
 
     private void CreateBloodStain() {
         GameObject go = new GameObject();
+        go.name = "blood_stain";
         go.transform.position = transform.position;
+        //go.transform.parent = FindObjectOfType<NpcSpawner>().transform;
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = bloodSprites[Random.Range(0, bloodSprites.Length - 1)];
         sr.sortingLayerName = "Background";

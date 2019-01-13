@@ -1,17 +1,20 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
     public GameObject menuCanvas;
+    public UnityEngine.UI.Image transitionImage;
 
     private void Awake() {
         menuCanvas.SetActive(false);
-        Time.timeScale = 1;
     }
-    
+
+    private void Start() {
+        transitionImage.GetComponent<Animator>().SetTrigger("TransitionIn");
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (menuCanvas.activeSelf) {
@@ -30,6 +33,9 @@ public class GameController : MonoBehaviour {
     }
 
     public void OnExitClick() {
+        transitionImage.GetComponent<Animator>().SetTrigger("TransitionOut");
+        // TODO: Better pausing!
+        Time.timeScale = 1;
         StartCoroutine(LoadMenuSceneAsync());
     }
 
@@ -46,13 +52,13 @@ public class GameController : MonoBehaviour {
     // Scene transition
 
     IEnumerator LoadMenuSceneAsync() {
+        yield return new WaitForSeconds(1);
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/MainMenuScene");
 
         while (!asyncLoad.isDone) {
             yield return null;
         }
-
-        Time.timeScale = 1;
     }
 
 }
