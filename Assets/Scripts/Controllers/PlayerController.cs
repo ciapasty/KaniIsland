@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : PausableBehaviour {
 
     public string player = "P1";
 
@@ -25,11 +25,11 @@ public class PlayerController : MonoBehaviour {
     private GameObject characterToPickup;
     private GameObject characterCarried;
 
-    Animator anim;
-    Rigidbody2D body;
-    SpriteRenderer render;
-    AudioSource audioSource;
-
+    private Animator anim;
+    private Rigidbody2D body;
+    private SpriteRenderer render;
+    private AudioSource audioSource;
+    
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -38,56 +38,58 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if (timeStunned <= 0) {
+        if (!isGamePaused) {
+            if (timeStunned <= 0) {
 
-            anim.SetBool("isStunned", false);
+                anim.SetBool("isStunned", false);
 
-            //  Walking animation
-            if (body.velocity.magnitude > 0.3f) {
-                anim.SetBool("isWalking", true);
-            } else {
-                anim.SetBool("isWalking", false);
-            }
+                //  Walking animation
+                if (body.velocity.magnitude > 0.3f) {
+                    anim.SetBool("isWalking", true);
+                } else {
+                    anim.SetBool("isWalking", false);
+                }
 
-            // Movement
-            if (Input.GetButton(player + "_Up")) {
-                body.AddForce(Vector2.up.normalized * moveForce);
-            }
+                // Movement
+                if (Input.GetButton(player + "_Up")) {
+                    body.AddForce(Vector2.up.normalized * moveForce);
+                }
 
-            if (Input.GetButton(player + "_Down")) {
-                body.AddForce(Vector2.down.normalized * moveForce);
-            }
-            if (Input.GetButton(player + "_Left")) {
-                body.AddForce(Vector2.left.normalized * moveForce);
-                transform.rotation = Quaternion.Euler(0, 180f, 0);
-            }
+                if (Input.GetButton(player + "_Down")) {
+                    body.AddForce(Vector2.down.normalized * moveForce);
+                }
+                if (Input.GetButton(player + "_Left")) {
+                    body.AddForce(Vector2.left.normalized * moveForce);
+                    transform.rotation = Quaternion.Euler(0, 180f, 0);
+                }
 
-            if (Input.GetButton(player + "_Right")) {
-                body.AddForce(Vector2.right.normalized * moveForce);
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
+                if (Input.GetButton(player + "_Right")) {
+                    body.AddForce(Vector2.right.normalized * moveForce);
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
 
 
-            // Attack/Body pickup
-            if (timeBtwAttack <= 0) {
-                if (Input.GetButtonDown(player + "_Action")) {
-                    timeBtwAttack = startTimeBtwAttack;
-                    if (characterCarried == null) {
-                        if (characterToPickup != null) {
-                            PickupCharacter();
-                            return;
+                // Attack/Body pickup
+                if (timeBtwAttack <= 0) {
+                    if (Input.GetButtonDown(player + "_Action")) {
+                        timeBtwAttack = startTimeBtwAttack;
+                        if (characterCarried == null) {
+                            if (characterToPickup != null) {
+                                PickupCharacter();
+                                return;
+                            }
+
+                            anim.SetTrigger("attack");
+                        } else {
+                            DropCharacter();
                         }
-
-                        anim.SetTrigger("attack");
-                    } else {
-                        DropCharacter();
                     }
+                } else {
+                    timeBtwAttack -= Time.deltaTime;
                 }
             } else {
-                timeBtwAttack -= Time.deltaTime;
+                timeStunned -= Time.deltaTime;
             }
-        } else {
-            timeStunned -= Time.deltaTime;
         }
 
         if (characterCarried != null) {

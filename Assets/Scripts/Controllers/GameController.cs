@@ -7,6 +7,13 @@ public class GameController : MonoBehaviour {
     public GameObject menuCanvas;
     public UnityEngine.UI.Image transitionImage;
 
+    public GameEvent pauseGameEvent;
+    public GameEvent resumeGameEvent;
+
+    public GameTimer gameTimer;
+
+    private bool isGamePaused = false;
+
     private void Awake() {
         menuCanvas.SetActive(false);
     }
@@ -24,6 +31,10 @@ public class GameController : MonoBehaviour {
             }
 
         }
+
+        if (!isGamePaused) {
+            gameTimer.UpdateTime(Time.deltaTime);
+        }
     }
 
     // Menu
@@ -39,19 +50,24 @@ public class GameController : MonoBehaviour {
         StartCoroutine(LoadMenuSceneAsync());
     }
 
-    void HideMenuResumeGame() {
+    private void HideMenuResumeGame() {
         menuCanvas.SetActive(false);
+        resumeGameEvent.Raise();
+        isGamePaused = false;
         Time.timeScale = 1;
+
     }
 
-    void ShowMenuPauseGame() {
+    private void ShowMenuPauseGame() {
         menuCanvas.SetActive(true);
+        pauseGameEvent.Raise();
+        isGamePaused = true;
         Time.timeScale = 0;
     }
 
     // Scene transition
 
-    IEnumerator LoadMenuSceneAsync() {
+    private IEnumerator LoadMenuSceneAsync() {
         yield return new WaitForSeconds(1);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/MainMenuScene");

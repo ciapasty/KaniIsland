@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class NpcController : MonoBehaviour {
+public class NpcController : PausableBehaviour {
 
     [Range(2f, 4f)]
     public float maxVelocity;
@@ -36,19 +36,21 @@ public class NpcController : MonoBehaviour {
     }
     
     void Update() {
-        if (!isDead) {
-            // Walking animation
-            if (Mathf.Abs(body.velocity.magnitude) > 0.5) {
-                anim.SetBool("isWalking", true);
-            } else {
-                anim.SetBool("isWalking", false);
-            }
+        if (!isGamePaused) {
+            if (!isDead) {
+                // Walking animation
+                if (Mathf.Abs(body.velocity.magnitude) > 0.5) {
+                    anim.SetBool("isWalking", true);
+                } else {
+                    anim.SetBool("isWalking", false);
+                }
 
-            // Sprite flip
-            if (body.velocity.x >= 0.5f) {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            } else if (body.velocity.x <= -0.5f) {
-                transform.rotation = Quaternion.Euler(0, 180f, 0);
+                // Sprite flip
+                if (body.velocity.x >= 0.5f) {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                } else if (body.velocity.x <= -0.5f) {
+                    transform.rotation = Quaternion.Euler(0, 180f, 0);
+                }
             }
         }
     }
@@ -98,4 +100,5 @@ public class NpcController : MonoBehaviour {
         sr.sprite = bloodSprites[Random.Range(0, bloodSprites.Length - 1)];
         sr.sortingLayerName = "Background";
     }
+
 }

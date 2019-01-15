@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour {
+public class CameraShake : PausableBehaviour {
 
     public float shakeMagnitude = 0.2f;
     public float dampingSpeed = 2.0f;
@@ -15,13 +15,15 @@ public class CameraShake : MonoBehaviour {
     }
 
     void Update() {
-        if (shakeDuration > 0) {
-            transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+        if (!isGamePaused) {
+            if (shakeDuration > 0) {
+                transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
 
-            shakeDuration -= Time.deltaTime * dampingSpeed;
-        } else {
-            shakeDuration = 0f;
-            transform.localPosition = initialPosition;
+                shakeDuration -= Time.deltaTime * dampingSpeed;
+            } else {
+                shakeDuration = 0f;
+                transform.localPosition = initialPosition;
+            }
         }
     }
 

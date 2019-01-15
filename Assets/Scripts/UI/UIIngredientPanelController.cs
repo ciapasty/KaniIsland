@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class IngredientPanelController : MonoBehaviour {
+public class UIIngredientPanelController : MonoBehaviour {
 
     public SoupData soupData;
 

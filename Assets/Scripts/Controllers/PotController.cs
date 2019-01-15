@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotController : MonoBehaviour {
+public class PotController : PausableBehaviour {
 
     public GameObject ipsGO;
     public SoupData soupData;

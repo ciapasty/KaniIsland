@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointsPanelController : MonoBehaviour {
+public class UIPointsPanelController : MonoBehaviour {
 
     public SoupData soupData;
 
