@@ -18,5 +18,7 @@ public class GameTimer : ScriptableObject {
 
     public void Reset() {
         timer = startTimeMinutes * 60f;
+        // Debug
+        timer = 10;
     }
 }

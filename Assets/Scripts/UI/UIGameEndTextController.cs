@@ -6,6 +6,7 @@ public class UIGameEndTextController : MonoBehaviour {
 
     public SoupData p1SoupData;
     public SoupData p2SoupData;
+    public AudioClip endSound;
 
     public void OnGameEnded() {
         if (p1SoupData.points > p2SoupData.points) {
@@ -15,6 +16,10 @@ public class UIGameEndTextController : MonoBehaviour {
         }
 
         GetComponent<Animator>().SetTrigger("Show");
+    }
+
+    public void PlayEnd() {
+        GetComponent<AudioSource>().PlayOneShot(endSound);
     }
 
 }
