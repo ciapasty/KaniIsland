@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 
     public GameEvent pauseGameEvent;
     public GameEvent resumeGameEvent;
+    public GameEvent gameEndedEvent;
 
     public GameTimer gameTimer;
 
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour {
         isGamePaused = true;
         spawner.enabled = false;
         AudioListener.pause = false;
+        gameTimer.Reset();
         StartCoroutine(PlayCountdown());
     }
 
@@ -35,10 +37,14 @@ public class GameController : MonoBehaviour {
             } else {
                 ShowMenuPauseGame();
             }
-
         }
-
         if (!isGamePaused) {
+            if (gameTimer.GetTime() <= 0) {
+                gameEndedEvent.Raise();
+                isGamePaused = true;
+                Time.timeScale = 0;
+            }
+
             gameTimer.UpdateTime(Time.deltaTime);
         }
     }

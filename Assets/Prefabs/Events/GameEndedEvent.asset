@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3325b29da506478bb10023613df7d9a, type: 3}
-  m_Name: MainGameTimer
+  m_Script: {fileID: 11500000, guid: 02b1b85212df74f1f812ec8c3c1f9211, type: 3}
+  m_Name: GameEndedEvent
   m_EditorClassIdentifier: 
-  startTimeMinutes: 5
-  timer: 267.5399

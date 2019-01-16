@@ -8,10 +8,6 @@ public class GameTimer : ScriptableObject {
 
     public float timer;
 
-    private void OnEnable() {
-        timer = startTimeMinutes * 60f;
-    }
-
     public void UpdateTime(float time) {
         timer -= time;
     }
@@ -20,4 +16,7 @@ public class GameTimer : ScriptableObject {
         return timer;
     }
 
+    public void Reset() {
+        timer = startTimeMinutes * 60f;
+    }
 }
