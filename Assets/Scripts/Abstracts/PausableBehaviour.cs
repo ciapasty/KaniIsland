@@ -6,12 +6,10 @@ public abstract class PausableBehaviour : MonoBehaviour {
 
     public void OnGamePaused() {
         isGamePaused = true;
-        AudioListener.pause = true;
     }
 
     public void OnGameResumed() {
         isGamePaused = false;
-        AudioListener.pause = false;
     }
 
 }

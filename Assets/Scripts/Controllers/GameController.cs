@@ -4,27 +4,33 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject menuCanvas;
+    public GameObject countdownPanel;
+    public GameObject menuPanel;
     public UnityEngine.UI.Image transitionImage;
+    public NpcSpawner spawner;
 
     public GameEvent pauseGameEvent;
     public GameEvent resumeGameEvent;
 
     public GameTimer gameTimer;
 
-    private bool isGamePaused = false;
+    private bool isGamePaused = true;
 
     private void Awake() {
-        menuCanvas.SetActive(false);
+        menuPanel.SetActive(false);
     }
 
     private void Start() {
         transitionImage.GetComponent<Animator>().SetTrigger("TransitionIn");
+        isGamePaused = true;
+        spawner.enabled = false;
+        AudioListener.pause = false;
+        StartCoroutine(PlayCountdown());
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (menuCanvas.activeSelf) {
+            if (menuPanel.activeSelf) {
                 HideMenuResumeGame();
             } else {
                 ShowMenuPauseGame();
@@ -51,18 +57,40 @@ public class GameController : MonoBehaviour {
     }
 
     private void HideMenuResumeGame() {
-        menuCanvas.SetActive(false);
-        resumeGameEvent.Raise();
-        isGamePaused = false;
-        Time.timeScale = 1;
-
+        menuPanel.SetActive(false);
+        ResumeGame();
     }
 
     private void ShowMenuPauseGame() {
-        menuCanvas.SetActive(true);
+        menuPanel.SetActive(true);
+        PauseGame();
+    }
+
+    private void PauseGame() {
         pauseGameEvent.Raise();
         isGamePaused = true;
         Time.timeScale = 0;
+        AudioListener.pause = true;
+    }
+
+    private void ResumeGame() {
+        resumeGameEvent.Raise();
+        isGamePaused = false;
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+    }
+
+    // Countdown
+
+    private IEnumerator PlayCountdown() {
+        yield return new WaitForSeconds(0.6f);
+
+        countdownPanel.GetComponent<Animator>().SetTrigger("Run");
+
+        yield return new WaitForSeconds(3);
+
+        ResumeGame();
+        spawner.enabled = true;
     }
 
     // Scene transition
@@ -75,6 +103,8 @@ public class GameController : MonoBehaviour {
         while (!asyncLoad.isDone) {
             yield return null;
         }
+
+        AudioListener.pause = false;
     }
 
 }
