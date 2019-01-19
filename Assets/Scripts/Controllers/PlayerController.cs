@@ -170,6 +170,7 @@ public class PlayerController : PausableBehaviour {
     public void Hit() {
         timeStunned = startTimeStunned;
         DropCharacter();
+        isMovingUp = isMovingDown = isMovingLeft = isMovingRight = false;
         anim.SetBool("isStunned", true);
     }
 
