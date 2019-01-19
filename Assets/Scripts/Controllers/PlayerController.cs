@@ -142,6 +142,14 @@ public class PlayerController : PausableBehaviour {
 
     public void DropCharacter() {
         if (characterCarried != null) {
+            Collider2D[] potentialPots = Physics2D.OverlapCircleAll(attackPosition.position, attackRange);
+            foreach (var pot in potentialPots) {
+                PotController pc = pot.GetComponent<PotController>();
+                if (pc != null && pot.gameObject.tag == gameObject.tag) {
+                    pc.IngredientDelivered(DropCharacterToPot());
+                    return;
+                }
+            }
             characterCarried.transform.position = transform.position;
             characterCarried.GetComponent<NpcController>().isPickable = true;
             characterToPickup = characterCarried;

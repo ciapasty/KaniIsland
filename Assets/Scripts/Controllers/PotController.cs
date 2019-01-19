@@ -17,15 +17,6 @@ public class PotController : PausableBehaviour {
         soupData.GetNewIngredients();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == soupData.playerTag) {
-            PlayerController pc = collision.GetComponent<PlayerController>();
-            if (pc.IsCarryingCharacter()) {
-                IngredientDelivered(pc.DropCharacterToPot());
-            }
-        }
-    }
-
     public void RemoveCharactersFromPot() {
         if (charactersInPot == null || charactersInPot.Count == 0)
             return;
@@ -43,7 +34,7 @@ public class PotController : PausableBehaviour {
         RemoveCharactersFromPot();
     }
 
-    private void IngredientDelivered(GameObject character) {
+    public void IngredientDelivered(GameObject character) {
         // Set character GO in pot
         character.GetComponent<Animator>().SetTrigger("GoIntoPot");
         character.GetComponent<SpriteRenderer>().sortingOrder = 0;

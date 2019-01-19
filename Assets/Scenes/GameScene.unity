@@ -7145,7 +7145,7 @@ PrefabInstance:
     - target: {fileID: 5206616556704119523, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player 2
       objectReference: {fileID: 0}
     - target: {fileID: 5206616556704119523, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
@@ -14148,6 +14148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 1 Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206616556704119523, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 5206616556704119527, guid: 63ba234c89dba4b0fb96c83e34a7ffdd,
         type: 3}
