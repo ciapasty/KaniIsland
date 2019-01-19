@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
     public SoupData[] soups;
     public GameTimer gameTimer;
 
+    public BackgroundMusic bgMusic;
+
     private bool isGamePaused = true;
 
     private void Awake() {
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour {
         if (!isGamePaused) {
             if (gameTimer.GetTime() <= 0) {
                 gameEndedEvent.Raise();
+                bgMusic.Stop();
                 isGamePaused = true;
                 Time.timeScale = 0;
                 ShowMenuRestartGame();
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour {
 
         ResumeGame();
         spawner.enabled = true;
+        bgMusic.Play();
     }
 
     // Scene transition
