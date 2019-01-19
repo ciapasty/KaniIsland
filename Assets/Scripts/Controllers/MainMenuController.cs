@@ -13,12 +13,8 @@ public class MainMenuController : MonoBehaviour {
 
     public void OnPlayClick() {
         transitionImage.GetComponent<Animator>().SetTrigger("TransitionOut");
+        GetComponent<AudioSource>().Play();
         StartCoroutine(LoadGameSceneAsync());
-    }
-
-    public void OnExitClick() {
-        Debug.Log("Game closed!");
-        Application.Quit(0);
     }
 
     IEnumerator LoadGameSceneAsync() {

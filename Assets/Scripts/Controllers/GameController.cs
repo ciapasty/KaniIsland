@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
     public GameEvent resumeGameEvent;
     public GameEvent gameEndedEvent;
 
+    public SoupData[] soups;
     public GameTimer gameTimer;
 
     private bool isGamePaused = true;
@@ -23,6 +24,9 @@ public class GameController : MonoBehaviour {
 
     private void Start() {
         transitionImage.GetComponent<Animator>().SetTrigger("TransitionIn");
+        foreach (var soup in soups) {
+            soup.points = 0;
+        }
         isGamePaused = true;
         spawner.enabled = false;
         AudioListener.pause = false;
@@ -48,6 +52,7 @@ public class GameController : MonoBehaviour {
     public void OnRestartClick() {
         transitionImage.GetComponent<Animator>().SetTrigger("TransitionOut");
         Time.timeScale = 1;
+        GetComponent<AudioSource>().Play();
         StartCoroutine(LoadMenuSceneAsync());
     }
 

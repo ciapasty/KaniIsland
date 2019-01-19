@@ -12,6 +12,10 @@ public class UIPointsPanelController : MonoBehaviour {
         text = transform.GetChild(1).GetComponent<UnityEngine.UI.Text>();
     }
 
+    private void Start() {
+        text.text = "0";
+    }
+
     public void OnSoupComplete() {
         string newPoints = soupData.points.ToString();
         if (newPoints != text.text) {
