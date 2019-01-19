@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3325b29da506478bb10023613df7d9a, type: 3}
   m_Name: MainGameTimer
   m_EditorClassIdentifier: 
-  startTimeMinutes: 5
-  timer: 267.5399
+  startTimeMinutes: 2
+  timer: 70.03095
