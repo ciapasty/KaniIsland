@@ -29,7 +29,12 @@ public class PlayerController : PausableBehaviour {
     private Rigidbody2D body;
     private SpriteRenderer render;
     private AudioSource audioSource;
-    
+
+    private bool isMovingUp;
+    private bool isMovingDown;
+    private bool isMovingLeft;
+    private bool isMovingRight;
+
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -52,20 +57,27 @@ public class PlayerController : PausableBehaviour {
 
                 // Movement
                 if (Input.GetButton(player + "_Up")) {
-                    body.AddForce(Vector2.up.normalized * moveForce);
+                    isMovingUp = true;
+                } else if (Input.GetButtonUp(player + "_Up")) {
+                    isMovingUp = false;
                 }
 
                 if (Input.GetButton(player + "_Down")) {
-                    body.AddForce(Vector2.down.normalized * moveForce);
+                    isMovingDown = true;
+                } else if (Input.GetButtonUp(player + "_Down")) {
+                    isMovingDown = false;
                 }
                 if (Input.GetButton(player + "_Left")) {
-                    body.AddForce(Vector2.left.normalized * moveForce);
+                    isMovingLeft = true;
                     transform.rotation = Quaternion.Euler(0, 180f, 0);
+                } else if (Input.GetButtonUp(player + "_Left")) {
+                    isMovingLeft = false;
                 }
-
                 if (Input.GetButton(player + "_Right")) {
-                    body.AddForce(Vector2.right.normalized * moveForce);
+                    isMovingRight = true;
                     transform.rotation = Quaternion.Euler(0, 0, 0);
+                } else if (Input.GetButtonUp(player + "_Right")) {
+                    isMovingRight = false;
                 }
 
 
@@ -99,6 +111,21 @@ public class PlayerController : PausableBehaviour {
     }
 
     void FixedUpdate() {
+        if (isMovingUp) {
+            body.AddForce(Vector2.up.normalized * moveForce);
+        }
+        if (isMovingDown) {
+            body.AddForce(Vector2.down.normalized * moveForce);
+
+        }
+        if (isMovingLeft) {
+            body.AddForce(Vector2.left.normalized * moveForce);
+
+        }
+        if (isMovingRight) {
+            body.AddForce(Vector2.right.normalized * moveForce);
+        }
+
         body.velocity = Vector2.ClampMagnitude(body.velocity, maxVelocity);
     }
 

@@ -31,18 +31,12 @@ public class GameController : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (menuPanel.activeSelf) {
-                HideMenuResumeGame();
-            } else {
-                ShowMenuPauseGame();
-            }
-        }
         if (!isGamePaused) {
             if (gameTimer.GetTime() <= 0) {
                 gameEndedEvent.Raise();
                 isGamePaused = true;
                 Time.timeScale = 0;
+                ShowMenuRestartGame();
             }
 
             gameTimer.UpdateTime(Time.deltaTime);
@@ -51,25 +45,14 @@ public class GameController : MonoBehaviour {
 
     // Menu
 
-    public void OnResumeClick() {
-        HideMenuResumeGame();
-    }
-
-    public void OnExitClick() {
+    public void OnRestartClick() {
         transitionImage.GetComponent<Animator>().SetTrigger("TransitionOut");
-        // TODO: Better pausing!
         Time.timeScale = 1;
         StartCoroutine(LoadMenuSceneAsync());
     }
 
-    private void HideMenuResumeGame() {
-        menuPanel.SetActive(false);
-        ResumeGame();
-    }
-
-    private void ShowMenuPauseGame() {
+    private void ShowMenuRestartGame() {
         menuPanel.SetActive(true);
-        PauseGame();
     }
 
     private void PauseGame() {
